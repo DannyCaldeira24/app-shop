@@ -17,14 +17,16 @@
         <link href="{{asset('css/material-kit.css?v=2.0.4')}}" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/v4-shims.css">
     </head>
 
     <body class="@yield('body-class') sidebar-collapse">
         <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
             <div class="container">
                 <div class="navbar-translate">
-                    <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
-                        Material Kit </a>
+                    <a class="navbar-brand" href="{{url('/')}}">
+                        App-Shop </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon"></span>
@@ -37,12 +39,12 @@
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">
-                                <i class="material-icons">cloud_download</i> {{ __('Entrar') }}
+                                <i class="fas fa-sign-in-alt"></i> {{ __('Entrar') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">
-                                <i class="material-icons">cloud_download</i> {{ __('Registrarse') }}
+                                <i class="fas fa-user-plus"></i> {{ __('Registrarse') }}
                             </a>
                         </li>
                         @else
@@ -81,44 +83,9 @@
                 </div>
             </div>
         </nav>
-        <div class="page-header header-filter" style="background-image: url('{{asset('img/bg7.jpg')}}'); background-size: cover; background-position: top center;">
-            @yield('content')
-            <footer class="footer">
-                <div class="container">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <a href="https://www.creative-tim.com">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://creative-tim.com/presentation">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.creative-tim.com">
-                                    Blog
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.creative-tim.com/license">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright float-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>, made with <i class="material-icons">favorite</i> by
-                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-                    </div>
-                </div>
-            </footer>
-        </div>
+        
+        @yield('content')
+            
         <footer class="footer">
             <div class="container">
                 <nav class="float-left">
