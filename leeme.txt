@@ -1,0 +1,16 @@
+Arrancar servidor: php artisan serve
+
+Para hacer una nueva migracion: php artisan migrate
+
+Para crear un modelo y a su vez la migración de una sola vez: php artisan make:model Product -m
+
+Para hacer rollback y migrar nuevamente todas nuestras tablas (Si le agregamos el -seed lanzamos los seeders): php artisan migrate:refresh --seed
+
+Para crear los model factory hacemos: php artisan make:factory NameFactory (donde name es el nombre de la nuestra entidad, este se creara en nuestra carpeta factories dentro de la carpeta database)
+
+Para crear un seeder: php artisan make:seeder NameTableSeeder
+
+Para lanzar el seed hacemos php artisan db:seed
+
+Para iniciar la consola interactiva tinker: php artisan tinker
+
