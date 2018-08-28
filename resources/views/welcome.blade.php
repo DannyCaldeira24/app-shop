@@ -61,7 +61,9 @@
             </div>
         </div>
         <div class="section text-center">
+            <hr>
             <h2 class="title">Productos disponibles</h2>
+            <hr>
             <div class="team">
                 <div class="row">
                     @foreach ($products as $product)
@@ -69,7 +71,7 @@
                         <div class="team-player">
                             <div class="card card-plain">
                                 <div class="col-md-6 ml-auto mr-auto">
-                                    <img src="{{$product->images()->first()->image}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <img style="width:150px;height:150px" src="{{$product->featured_image_url}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                 </div>
                                 <h4 class="card-title">{{$product->name}}
                                     <br>
