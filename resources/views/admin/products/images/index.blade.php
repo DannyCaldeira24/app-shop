@@ -60,7 +60,12 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <img style="max-width:250px;max-height:250px" src="{{$image->url}}" alt="">
-                                        <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
+                                        <form method="post" action="">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <input type="hidden" name="image_id" value="{{$image->id}}">
+                                            <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

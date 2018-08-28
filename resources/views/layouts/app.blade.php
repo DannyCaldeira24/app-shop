@@ -25,6 +25,15 @@
             border: 1px solid #000;
             margin: 10px 5px 0 0;
           }
+            table{
+              table-layout: fixed;
+            }
+
+            #miTablaPersonalizada th{
+              width: 150px;
+              overflow: auto;
+              
+            }
         </style>
     </head>
 

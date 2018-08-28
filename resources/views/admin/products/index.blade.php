@@ -34,12 +34,12 @@
                     <div class="col-md-12 col-12">
                         <table class="table">
                             <thead>
-                                <tr>
+                                <tr id="miTablaPersonalizada">
                                     <th class="text-center">#</th>
-                                    <th class="col-md-2">Nombre</th>
-                                    <th class="col-md-3">Descripción</th>
-                                    <th class="">Categoría</th>
-                                    <th class="text-right">Precio</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Descripción</th>
+                                    <th class="text-center">Categoría</th>
+                                    <th class="text-center">Precio</th>
                                     <th class="text-center">Opciones</th>
                                 </tr>
                             </thead>
@@ -50,7 +50,7 @@
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->category ? $product->category->name : 'General'}}</td>
-                                    <td class="text-right">&euro; {{$product->price}}</td>
+                                    <td class="text-center">&euro; {{$product->price}}</td>
                                     <td class="td-actions text-right">
                                         <form method="post" action="{{url('/admin/products/'.$product->id.'/delete')}}">
                                             @csrf
