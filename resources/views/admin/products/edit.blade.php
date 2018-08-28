@@ -2,7 +2,7 @@
 
 @section('body-class', 'profile-page')
 
-@section('title',"Registrar producto")
+@section('title',"Editar producto")
 
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/city-profile.jpg')}}')">

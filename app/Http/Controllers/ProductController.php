@@ -81,6 +81,6 @@ class ProductController extends Controller
     	$product=Product::find($id);
     	$product->delete();//Delete
 
-    	return back();
+    	return redirect('/admin/products');
     }
 }

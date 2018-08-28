@@ -39,12 +39,12 @@
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">
-                                <i class="fas fa-sign-in-alt"></i> {{ __('Entrar') }}
+                                <i class="material-icons">exit_to_app</i> {{ __('Entrar') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">
-                                <i class="fas fa-user-plus"></i> {{ __('Registrarse') }}
+                                <i class="material-icons">person_add</i> {{ __('Registrarse') }}
                             </a>
                         </li>
                         @else
@@ -53,10 +53,15 @@
                                 <i class="material-icons">apps</i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-with-icons" aria-labelledby="navbarDropdown">
+                                @if (auth()->user()->admin)
+                                    <a class="dropdown-item" href="{{ url('/admin/products') }}">
+                                    <i class="material-icons">add_shopping_cart</i>{{ __('Gestionar Productos') }}
+                                    </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    <i class="material-icons">layers</i>{{ __('Logout') }}
+                                    <i class="material-icons">exit_to_app</i>{{ __('Desconectarse') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -92,12 +97,12 @@
                     <ul>
                         <li>
                             <a href="https://www.creative-tim.com">
-                                Creative Tim
+                                Bela'Shop
                             </a>
                         </li>
                         <li>
                             <a href="https://creative-tim.com/presentation">
-                                About Us
+                                Sobre nosotros
                             </a>
                         </li>
                         <li>
@@ -117,7 +122,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                    <a href="#" target="_blank">Danny Caldeira</a>
                 </div>
             </div>
         </footer>
