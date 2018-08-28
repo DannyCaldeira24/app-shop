@@ -19,6 +19,13 @@
         <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/v4-shims.css">
+        <style>
+          .thumb {
+            height: 300px;
+            border: 1px solid #000;
+            margin: 10px 5px 0 0;
+          }
+        </style>
     </head>
 
     <body class="@yield('body-class') sidebar-collapse">
@@ -140,6 +147,32 @@
         <script src="{{asset('js/plugins/jquery.sharrre.js')}}" type="text/javascript"></script>
         <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
         <script src="{{asset('js/material-kit.js?v=2.0.4')}}" type="text/javascript"></script>
+        <script>
+          function archivo(evt) {
+              var files = evt.target.files; // FileList object
+         
+              // Obtenemos la imagen del campo "file".
+              for (var i = 0, f; f = files[i]; i++) {
+                //Solo admitimos imágenes.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+         
+                var reader = new FileReader();
+         
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                      // Insertamos la imagen
+                     document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+         
+                reader.readAsDataURL(f);
+              }
+          }
+         
+          document.getElementById('files').addEventListener('change', archivo, false);
+        </script>
     </body>
 
 </html>
