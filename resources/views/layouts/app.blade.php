@@ -69,6 +69,11 @@
                                 <i class="material-icons">apps</i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-with-icons" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/home') }}">
+                                    <i class="material-icons">
+                                        home
+                                    </i>{{ __('Home') }}
+                                </a>
                                 @if (auth()->user()->admin)
                                     <a class="dropdown-item" href="{{ url('/admin/products') }}">
                                     <i class="material-icons">add_shopping_cart</i>{{ __('Gestionar Productos') }}
