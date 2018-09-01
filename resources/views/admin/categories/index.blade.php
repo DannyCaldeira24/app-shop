@@ -2,7 +2,7 @@
 
 @section('body-class', 'profile-page')
 
-@section('title',"Lista de productos")
+@section('title',"Lista de categorias")
 
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/city-profile.jpg')}}')">
@@ -27,8 +27,8 @@
   <p>Como administrador puede gestionar nuestros productos</p>
 </div> -->
         <div class="tab-content tab-space text-center">
-            <a href="{{url('/admin/products/create')}}" type="button" class="btn btn-primary">Agregar producto</a>
-            <h2 class="title">Listado de productos</h2>
+            <a href="{{url('/admin/categories/create')}}" type="button" class="btn btn-primary">Nueva categoría</a>
+            <h2 class="title">Listado de categorias</h2>
             <div class="team">
                 <div class="row">
                     <div class="col-md-12 col-12">
@@ -38,32 +38,25 @@
                                     <th class="text-center">#</th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Descripción</th>
-                                    <th class="text-center">Categoría</th>
-                                    <th class="text-center">Precio</th>
                                     <th class="text-center">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($categories as $category)
                                 <tr>
-                                    <td class="text-center">{{$product->id}}</td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->description}}</td>
-                                    <td>{{$product->category_name}}</td>
-                                    <td class="text-center">&euro; {{$product->price}}</td>
+                                    <td class="text-center">{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
+                                    <td>{{$category->description}}</td>
                                     <td class="td-actions text-right">
-                                        <form method="post" action="{{url('/admin/products/'.$product->id.'/delete')}}">
+                                        <form method="post" action="{{url('/admin/categories/'.$category->id.'/delete')}}">
                                             @csrf
-                                            <a href="{{url('/products/'.$product->id)}}" type="button" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs" target="_blank">
+                                            <a href="#" type="button" rel="tooltip" title="Información detallada" class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-info"></i>
                                             </a>
-                                            <a href="{{url('/admin/products/'.$product->id.'/images')}}" type="button" rel="tooltip" title="Imagenes del producto" class="btn btn-primary btn-simple btn-xs">
-                                                <i class="material-icons">add_photo_alternate</i>
-                                            </a>
-                                            <a href="{{url('/admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Editar producto" class="btn btn-success btn-simple btn-xs">
+                                            <a href="{{url('/admin/categories/'.$category->id.'/edit')}}" rel="tooltip" title="Editar categoria" class="btn btn-success btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <button type="submit" rel="tooltip" title="Eliminar producto" class="btn btn-danger btn-simple btn-xs">
+                                            <button type="submit" rel="tooltip" title="Eliminar categoria" class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-times"></i>
                                             </button>
                                         </form>
@@ -75,7 +68,7 @@
                     </div>
                     <div class="col-md-12">
                         <div style="display: flex;justify-content: center;">
-                            {{$products->links()}}
+                            {{$categories->links()}}
                         </div>
                     </div>               
                 </div>

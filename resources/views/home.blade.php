@@ -117,6 +117,7 @@
                           </table>
                           <form method="post" action="{{url('/order')}}">
                             @csrf
+                            
                             <button class="btn btn-primary btn-link">Realizar pedido</button>
                           </form>   
                       </div>

@@ -2,7 +2,7 @@
 
 @section('body-class', 'profile-page')
 
-@section('title',"Registrar producto")
+@section('title',"Registrar categoría")
 
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/city-profile.jpg')}}')">
@@ -32,8 +32,8 @@
                     <div class="col-12 col-sm-8">
                         <div class="card">
                             <div class="card-header card-header-text card-header-primary">
-                                <h4 class="card-title">Registrar Productos</h4>
-                                <p class="category">Datos del producto</p>
+                                <h4 class="card-title">Registrar Categoría</h4>
+                                <p class="category">Datos de la categoría</p>
                             </div>
                             <div class="card-body">
                                 @if ($errors->any())
@@ -45,51 +45,26 @@
                                        </ul>
                                    </div> 
                                 @endif
-                                <form method="POST" action="{{ url('/admin/products') }}">
+                                <form method="POST" action="{{ url('/admin/categories') }}">
                                     @csrf
                                       <div class="form-group">
                                         <label for="name">Nombre</label>
                                         <input type="text" class="form-control" name="name" value="{{old('name')}}">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="description">Descripción corta</label>
-                                        <input type="text" class="form-control" name="description" value="{{old('description')}}">
-                                      </div>
-                                      
-                                      <div class="row">
-                                        <div class="col-6 col-md-6">
-                                          <div class="form-group">
-                                            <label for="price">Precio</label>
-                                            <input type="text" class="form-control" name="price" value="{{old('price')}}">
-                                          </div>
-                                        </div>
-                                        <div class="col-6 col-sm-6">
-                                          <div class="form-group">
-                                            <label for="category_id">Categoría del Producto</label>
-                                            <select class="form-control form-control-sm" name="category_id" id="category_id">
-                                              <option value="0">General</option>
-                                              @foreach ($categories as $category)
-                                              <option value="{{$category->id}}">{{$category->name}}</option>
-                                              @endforeach
-                                            </select>
-                                          </div>
-                                        </div>
                                       </div> 
                                       <div class="form-group">
-                                        <label for="long_description">Descripcion completa</label>
-                                        <textarea class="form-control" name="long_description" rows="5" placeholder="">{{old('long_description')}}</textarea>
+                                        <textarea class="form-control" name="description" rows="5" placeholder="Descripción extensa de la categoría">{{old('description')}}</textarea>
                                       </div>
                                       <button class="btn btn-primary">
                                           Registrar
-                                      </button>&nbsp;&nbsp;&nbsp;
-                                      <a href="{{url('/admin/products')}}" type="button" class="btn btn-danger">Cancelar</a>  
+                                      </button>
+                                      <a href="{{url('/admin/categories')}}" type="button" class="btn btn-danger">Cancelar</a>  
                                 </form>
                             </div>
                         </div>
                     </div>          
                 </div>
             </div>
-             <a href="{{url('/admin/products')}}" type="button" class="btn btn-primary">Ver productos</a>    
+             <a href="{{url('/admin/categories')}}" type="button" class="btn btn-primary">Ver categorias</a>    
         </div>    
       </div>
     </div>

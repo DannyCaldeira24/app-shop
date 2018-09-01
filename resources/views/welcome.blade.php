@@ -5,6 +5,7 @@
 @section('title',"Bienvenido a Bela'Shop")
 
 @section('content')
+
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/profile_city.jpg')}}')">
     <div class="container">
         <div class="row">
@@ -62,33 +63,35 @@
         </div>
         <div class="section text-center">
             <hr>
-            <h2 class="title">Productos disponibles</h2>
-            <hr>
+            <h2 class="title">Visita nuestras categorías</h2>
+            
+            <form class="" method="get" action="{{url('/search')}}">
+                <input type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
+                <button class="btn btn-primary btn-just-icon" type="submit">
+                    <i class="material-icons">
+                        search
+                    </i>
+                </button>
+            </form>
             <div class="team">
                 <div class="row">
-                    @foreach ($products as $product)
+                    @foreach ($categories as $category)
                     <div class="col-md-4">
                         <div class="team-player">
                             <div class="card card-plain">
                                 <div class="col-md-6 ml-auto mr-auto">
-                                    <img style="width:150px;height:150px" src="{{$product->featured_image_url}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <img style="width:150px;height:150px" src="{{$category->featured_image_url}}" alt="Imagen representativa de la categoria {{$category->name}}" class="img-raised rounded-circle img-fluid">
                                 </div>
-                                <h4 class="card-title"><a href="{{url('/products/'.$product->id)}}">{{$product->name}}</a>
+                                <h4 class="card-title"><a href="{{url('/categories/'.$category->id)}}">{{$category->name}}</a>
                                     <br>
-                                    <small class="card-description text-muted">{{$product->category->name}}</small>
                                 </h4>
                                 <div class="card-body">
-                                    <p class="card-description">{{$product->description}}</p>
+                                    <p class="card-description">{{$category->description}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>
-                <div class="col-md-12">
-                    <div style="display: flex;justify-content: center;">
-                        {{$products->links()}}
-                    </div>
                 </div> 
             </div>
         </div>
@@ -130,4 +133,27 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="{{asset('/js/typeahead.bundle.min.js')}}"></script>
+    <script>
+        $(function(){
+            //Bloodhound
+            var products = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: '{{url("/products/json")}}'
+            });
+            //inicializar typeahead sobre nuestro input de búsqueda
+            $('#search').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                name: 'products',
+                source: products
+            });
+        });
+    </script>
 @endsection

@@ -55,11 +55,27 @@
                                         <label for="description">Descripción corta</label>
                                         <input type="text" class="form-control" name="description" value="{{old('description', $product->description)}}">
                                       </div>
+                                      <div class="row">
+                                        <div class="col-6 col-md-6">
+                                          <div class="form-group">
+                                            <label for="price">Precio</label>
+                                            <input type="text" class="form-control" name="price" value="{{old('price', $product->price)}}"">
+                                          </div>
+                                        </div>
+                                        <div class="col-6 col-sm-6">
+                                          <div class="form-group">
+                                            <label for="category_id">Categoría del Producto</label>
+                                            <select class="form-control form-control-sm" name="category_id" id="category_id">
+                                              <option value="0">General</option>
+                                              @foreach ($categories as $category)
+                                              <option value="{{$category->id}}" @if($category->id == old('category_id', $product->category_id)) selected @endif>{{$category->name}}</option>
+                                              @endforeach
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>  
                                       <div class="form-group">
-                                        <label for="description">Precio</label>
-                                        <input type="text" class="form-control" name="price" value="{{old('price', $product->price)}}">
-                                      </div> 
-                                      <div class="form-group">
+                                        <label for="long_description">Descripcion completa</label>
                                         <textarea class="form-control" name="long_description" rows="5">{{old('long_description', $product->long_description)}}</textarea>
                                       </div>
                                       <button class="btn btn-primary">
