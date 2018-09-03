@@ -13,7 +13,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-        	'name'=>'Danny',
+        	'name'=>'Danny Alejandro',
+            'surname'=>'Caldeira Correia',
+            'direction'=>'Av. Intercomunal El Valle Parroquia Coche. Residencias Venezuela',
+            'postal_code'=>'1090',
         	'email'=>'dannyelportu2013@gmail.com',
         	'password'=>bcrypt('123123'),
             'admin'=>true

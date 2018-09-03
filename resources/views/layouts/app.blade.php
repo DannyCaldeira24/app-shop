@@ -114,14 +114,24 @@
                                         home
                                     </i>{{ __('Home') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ url('/edit_user') }}">
+                                    <i class="material-icons">
+                                        settings
+                                    </i>{{ __('Config') }}
+                                </a>
                                 @if (auth()->user()->admin)
                                     <a class="dropdown-item" href="{{ url('/admin/products') }}">
                                     <i class="material-icons">add_shopping_cart</i>{{ __('Gestionar Productos') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/admin/categories') }}">
-                                    <i class="material-icons">add_shopping_cart</i>{{ __('Gestionar categorías') }}
+                                    <i class="material-icons">library_add</i>{{ __('Gestionar categorías') }}
                                     </a>
                                 @endif
+                                <a class="dropdown-item" href="{{ url('/change_password') }}">
+                                    <i class="material-icons">
+                                        vpn_key
+                                    </i>{{ __('Cambiar contraseña') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -133,22 +143,31 @@
                             </div>
                         </li>
                         @endguest
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
+                        @yield('welcome')
+<!--                         <li class="nav-item">
+    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+        <i class="fa fa-twitter"></i>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+        <i class="fa fa-facebook-square"></i>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+        <i class="fa fa-instagram"></i>
+    </a>
+</li> -->
                     </ul>
+                    <form style="margin-left:30px;color:black;" class="form-inline my-2 my-lg-0" method="get" action="{{url('/search')}}">
+                        <input style="color:black;" class="form-control mr-sm-2" type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
+                        <button class="btn btn-primary btn-just-icon" type="submit">
+                            <i class="material-icons">
+                                search
+                            </i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -230,7 +249,42 @@
          
           document.getElementById('files').addEventListener('change', archivo, false);
         </script>
-        @yield('scripts')
+        <script src="{{asset('/js/typeahead.bundle.min.js')}}"></script>
+        <script>
+            $(function(){
+                //Bloodhound
+                var products = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: '{{url("/products/json")}}'
+                });
+                //inicializar typeahead sobre nuestro input de búsqueda
+                $('#search').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'products',
+                    source: products
+                });
+                $('#search1').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'products',
+                    source: products
+                });
+                $('#search2').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'products',
+                    source: products
+                });
+            });
+        </script>
     </body>
 
 </html>

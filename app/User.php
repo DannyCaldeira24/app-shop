@@ -8,6 +8,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public static $messages = [
+        'name.required'=>'Es necesario ingresar un nombre para el usuario',
+        'name.min'=>'El nombre del usuario debe tener al menos 3 caracteres',
+        'direction.required'=>'El usuario debe tener alguna dirección',
+        'direction.max'=>'La dirección no puede exceder los 400 caracteres',
+        'password.current_password'=>'La contraseña que nos ha suministrado no se corresponde con su contraseña actual',
+        'password.min'=>'La contraseña actual que nos ha suministrado es incorrecta porque no tiene al menos 6 caracteres de largo'
+    ];
+    public static $rules=[
+        'name' => 'required|min:3',
+        'direction' => 'required|max:400',
+        'postal_code' => 'required',
+        'password.required' => 'Debe suministrar su contraseña actual',
+        'password' => 'required|min:6|current_password'
+    ];
     use Notifiable;
 
     /**
@@ -16,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'surname', 'direction', 'postal_code'
     ];
 
     /**

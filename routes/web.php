@@ -11,6 +11,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}', 'ProductController@show');
 Route::get('/categories/{category}','CategoryController@show');
 
+Route::middleware(['auth'])->group(function(){
+	Route::get('/user/edit', 'UserController@image');
+	Route::post('/update/avatar','UserController@update_avatar');
+	Route::get('/edit_user', 'UserController@index');
+	Route::post('/modify_user','UserController@edit');
+	Route::get('/change_password','UserController@showpassform');
+	Route::post('/change_password/process','UserController@update_password');
+});
+
 Route::middleware(['cart'])->group(function () {
 	Route::post('/cart', 'CartDetailController@store');
 	Route::delete('/cart', 'CartDetailController@destroy');

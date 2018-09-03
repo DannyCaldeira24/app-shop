@@ -4,6 +4,24 @@
 
 @section('title',"Bienvenido a Bela'Shop")
 
+@section('welcome')
+    <li class="nav-item">
+        <a class="nav-link" href="#about_us">
+            <i class="material-icons">perm_device_information</i> {{ __('Más informacion') }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#contact">
+            <i class="material-icons">contact_support</i> {{ __('Contactanos') }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#category">
+            <i class="material-icons">category</i> {{ __('Categorías') }}
+        </a>
+    </li>
+@endsection    
+
 @section('content')
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/profile_city.jpg')}}')">
@@ -22,7 +40,7 @@
 </div>
 <div class="main main-raised">
     <div class="container">
-        <div class="section text-center">
+        <div id="about_us" class="section text-center">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <h2 class="title">Perfecto, seamos concisos</h2>
@@ -61,12 +79,12 @@
                 </div>
             </div>
         </div>
-        <div class="section text-center">
-            <hr>
+        <div id="category" class="section text-center">
+            
             <h2 class="title">Visita nuestras categorías</h2>
             
             <form class="" method="get" action="{{url('/search')}}">
-                <input type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
+                <input type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search2">
                 <button class="btn btn-primary btn-just-icon" type="submit">
                     <i class="material-icons">
                         search
@@ -95,7 +113,7 @@
                 </div> 
             </div>
         </div>
-        <div class="section section-contacts">
+        <div id="contact" class="section section-contacts">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <h2 class="text-center title">Contactenos</h2>
@@ -135,25 +153,3 @@
 
 @endsection
 
-@section('scripts')
-    <script src="{{asset('/js/typeahead.bundle.min.js')}}"></script>
-    <script>
-        $(function(){
-            //Bloodhound
-            var products = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.whitespace,
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '{{url("/products/json")}}'
-            });
-            //inicializar typeahead sobre nuestro input de búsqueda
-            $('#search').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'products',
-                source: products
-            });
-        });
-    </script>
-@endsection

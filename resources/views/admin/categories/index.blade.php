@@ -14,10 +14,10 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img src="{{asset('img/faces/christian.jpg')}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                <img src="{{asset('images/users/'. Auth::user()->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
               </div>
               <div class="name">
-                <h3 class="title">Christian Louboutin</h3>
+                <h3 class="title">{{ Auth::user()->name }}</h3>
                 <h6>Admin</h6>
               </div>
             </div>

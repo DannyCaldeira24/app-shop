@@ -21,21 +21,7 @@ class ProductController extends Controller
     	//registrar el nuevo producto en la db
     	//dd($request->all());
     	//validar
-    	$messages = [
-    		'name.required'=>'Es necesario ingresar un nombre para el producto',
-    		'name.min'=>'El nombre del producto debes tener al menos 3 caracteres',
-    		'description.required'=>'El producto debe tener alguna descripción',
-    		'description.max'=>'La descripcion corta no puede exceder los 200 caracteres',
-    		'price.required'=>'El producto debe tener un precio',
-    		'price.numeric'=>'El producto debe tener un precio valido, no acepta comas ni puntos',
-    		'price.min'=>'No se admiten precios negativos'
-    	];
-    	$rules=[
-    		'name' => 'required|min:3',
-    		'description' => 'required|max:200',
-    		'price' => 'required|numeric|min:0'
-    	];
-    	$this->validate($request,$rules,$messages);
+    	$this->validate($request,Product::$rules,Product::$messages);
     	$product=new Product();
     	$product->name=$request->input('name');
     	$product->description=$request->input('description');
@@ -56,21 +42,7 @@ class ProductController extends Controller
     	//registrar el nuevo producto en la db
     	//dd($request->all());
     	//validar
-    	$messages = [
-    		'name.required'=>'Es necesario ingresar un nombre para el producto',
-    		'name.min'=>'El nombre del producto debes tener al menos 3 caracteres',
-    		'description.required'=>'El producto debe tener alguna descripción',
-    		'description.max'=>'La descripcion corta no puede exceder los 200 caracteres',
-    		'price.required'=>'El producto debe tener un precio',
-    		'price.numeric'=>'El producto debe tener un precio valido, no acepta comas ni puntos',
-    		'price.min'=>'No se admiten precios negativos'
-    	];
-    	$rules=[
-    		'name' => 'required|min:3',
-    		'description' => 'required|max:200',
-    		'price' => 'required|numeric|min:0'
-    	];
-    	$this->validate($request,$rules,$messages);
+        $this->validate($request,Product::$rules,Product::$messages);
     	$product=Product::find($id);
     	$product->name=$request->input('name');
     	$product->description=$request->input('description');

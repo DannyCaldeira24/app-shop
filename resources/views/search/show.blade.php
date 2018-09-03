@@ -29,7 +29,7 @@
         <div class="description text-center">
           <p>Se encontraron {{$products->count()}} resultados</p>
           <form class="" method="get" action="{{url('/search')}}">
-              <input type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
+              <input type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search1">
               <button class="btn btn-primary btn-just-icon" type="submit">
                   <i class="material-icons">
                       search
@@ -72,28 +72,5 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('scripts')
-    <script src="{{asset('/js/typeahead.bundle.min.js')}}"></script>
-    <script>
-        $(function(){
-            //Bloodhound
-            var products = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.whitespace,
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '{{url("/products/json")}}'
-            });
-            //inicializar typeahead sobre nuestro input de búsqueda
-            $('#search').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'products',
-                source: products
-            });
-        });
-    </script>
 @endsection
 
