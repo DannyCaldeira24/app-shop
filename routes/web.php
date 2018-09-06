@@ -55,4 +55,6 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 	Route::post('/order/accepted/{id}', 'OrderController@accept');
 	Route::post('/order/reject/{id}', 'OrderController@reject');
 	Route::post('/order/finish/{id}', 'OrderController@finish');
+	Route::post('/order/delete/{id}', 'OrderController@delete');
+	Route::post('/order/pending/{id}', 'OrderController@pending');
 });

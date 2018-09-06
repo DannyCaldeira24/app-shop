@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\CartDetail;
 use App\Cart;
+use App\User;
 use Mail;
-use App\Mail\NewOrder;
+use App\Mail\OrderCancelled;
 
 class CartDetailController extends Controller
 {
@@ -41,6 +42,9 @@ class CartDetailController extends Controller
             $order_status=CartDetail::where('cart_id', $cart_current->id)->get();
             if($order_status->isEmpty()){
                 $cart_current->status="Cancelado";
+                $user=auth()->user();
+                $admins=User::where('admin',true)->get();
+                Mail::to($admins)->send(new OrderCancelled($user,$cart_current));
                 $cart_current->save();
             }
         }else{

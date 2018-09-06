@@ -26,18 +26,34 @@ class OrderController extends Controller
     	$order_accepted=Cart::find($id);
     	$order_accepted->status="Aceptado";
     	$order_accepted->save();
-    	return back();
+        $notification='La orden se ha aceptado a esperas de la entrega';
+    	return back()->with(compact('notification'));
     }
     public function reject($id){
     	$order_reject=Cart::find($id);
     	$order_reject->status="Rechazado";
     	$order_reject->save();
-    	return back();	
+        $notification='La orden se ha rechazado por parte del administrador';
+    	return back()->with(compact('notification'));	
     }
     public function finish($id){
     	$order_accepted=Cart::find($id);
     	$order_accepted->status="Finalizado";
     	$order_accepted->save();
-    	return back();
+        $notification='La orden se ha entregado y por tanto se ha cambiado su status a Finalizado';
+    	return back()->with(compact('notification'));
+    }
+    public function delete($id){
+        $order_delete=Cart::find($id);
+        $order_delete->delete();
+        $notification='La orden se ha eliminado correctamente de la base de datos';
+        return back()->with(compact('notification'));
+    }
+    public function pending($id){
+        $order_pending=Cart::find($id);
+        $order_pending->status="Pendiente";
+        $order_pending->save();
+        $notification='La orden se ha vuelto poner en estado Pendiente';
+        return back()->with(compact('notification'));
     }
 }

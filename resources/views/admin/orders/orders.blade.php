@@ -156,10 +156,9 @@
                                 {{$order->user_id}}
                               </td>
                               <td class="td-actions text-center">
-                                  <form method="post" action="">
+                                  <form method="post" action="{{url('/admin/order/delete/'.$order->id)}}">
                                       @csrf
-                                      <input type="hidden" name="" value="">
-                                      <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                      <button type="submit" rel="tooltip" title="Desechar orden" class="btn btn-danger btn-simple btn-xs">
                                       <i class="fa fa-times"></i>
                                       </button>
                                   </form>
@@ -199,17 +198,10 @@
                               <td>
                                 {{$order->user_id}}
                               </td>
-                              <td class="td-actions text-center">
-                                  <form method="post" action="">
-                                      @csrf
-                                      <a href="{{url('/admin/orders/'.$order->id)}}" rel="tooltip" title="Info" class="btn btn-info btn-simple btn-xs" target="_blank">
-                                        <i class="fa fa-info"></i> 
-                                      </a>
-                                      <input type="hidden" name="" value="">
-                                      <button type="submit" rel="tooltip" title="Aceptar" class="btn btn-danger btn-simple btn-xs">
-                                      <i class="fa fa-times"></i>
-                                      </button>
-                                  </form>
+                              <td class="td-actions text-center">               
+                                  <a href="{{url('/admin/orders/'.$order->id)}}" rel="tooltip" title="Info" class="btn btn-info btn-simple btn-xs" target="_blank">
+                                    <i class="fa fa-info"></i> 
+                                  </a>
                               </td>
                           </tr>                       
                         @endforeach
@@ -256,10 +248,9 @@
                                       <i class="fa fa-check"></i>
                                       </button>
                                   </form>
-                                  <form method="post" action="">
+                                  <form method="post" action="{{url('/admin/order/pending/'.$order->id)}}">
                                       @csrf
-                                      <input type="hidden" name="" value="">
-                                      <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                      <button type="submit" rel="tooltip" title="Poner en pendiente" class="btn btn-danger btn-simple btn-xs">
                                       <i class="fa fa-times"></i>
                                       </button>
                                   </form>
@@ -300,16 +291,9 @@
                                 {{$order->user_id}}
                               </td>
                               <td class="td-actions text-center">
-                                  <form method="post" action="">
-                                      @csrf
-                                      <a href="{{url('/admin/orders/'.$order->id)}}" rel="tooltip" title="Info" class="btn btn-info btn-simple btn-xs" target="_blank">
-                                        <i class="fa fa-info"></i> 
-                                      </a>
-                                      <input type="hidden" name="" value="">
-                                      <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
-                                      <i class="fa fa-times"></i>
-                                      </button>
-                                  </form>
+                                  <a href="{{url('/admin/orders/'.$order->id)}}" rel="tooltip" title="Info" class="btn btn-info btn-simple btn-xs" target="_blank">
+                                    <i class="fa fa-info"></i> 
+                                  </a>             
                               </td>
                           </tr>                       
                         @endforeach

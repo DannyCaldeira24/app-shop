@@ -14,11 +14,29 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img src="{{asset('images/users/'. Auth::user()->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                <a title="Cambiar imagen de perfil" href="{{url('/user/edit')}}">
+                  <img src="{{asset('images/users/'. Auth::user()->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                </a>
               </div>
+              <br>
               <div class="name">
-                <h3 class="title">{{ Auth::user()->name }}</h3>
-                <h6>Admin</h6>
+                <div style="display: flex;justify-content: center;" class="row">
+                    <div class="col-12 col-sm-8">
+                        <div class="card">
+                            <div class="card-header card-header-text card-header-primary">
+                                <h4 class="card-title">{{ Auth::user()->name }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="title">@if (auth()->user()->admin) ADMIN @else Cliente @endif</h5>
+                                @if (session('notification'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('notification') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>          
+                </div>
               </div>
             </div>
           </div>

@@ -142,9 +142,9 @@
                               </tr>
                           </thead>
                           <tbody>
-                                @php
-                                  $n_order=1
-                                @endphp
+                              @php
+                                $n_order=1
+                              @endphp
                               @foreach (auth()->user()->carts as $cart)
                                 @php
                                   $cont=0
