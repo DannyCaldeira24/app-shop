@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Hash;
+use App\Cart;
+use App\CartDetail;
 
 class UserController extends Controller
 {
@@ -60,6 +62,28 @@ class UserController extends Controller
 		$user->Password = Hash::make($request->input('newpass'));
 		$user->save();
         $notification = 'Ha modificado su contraseña correctamente.';
+        return redirect('/home')->with(compact('notification'));
+    }
+    public function img_trans($id){
+        $cart_id=$id;
+        return view('users.img')->with(compact('cart_id'));
+    }
+    public function update_trans(Request $request){
+        $cart = Cart::find($request->cart_id);
+        if(auth()->user()->id == $cart->user_id){
+            $this->validate($request, [
+              'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+         
+            $filename = auth()->user()->id.'_'.time().'.'.$request->avatar->getClientOriginalExtension();
+            $request->avatar->move(public_path('images/carts'), $filename);
+
+            $cart->order_trans = $filename;
+            $cart->save();
+            $notification = 'Se ha actualizado la imagen de su transferencia, pronto el administrador verificara la compra y pondra la orden de pendiente a Aceptado de no cometerse ninguna irregularidad y se le contactara por el correo que tenga asociado a su cuenta para la posterior entrega.';
+        }else{
+            $notification = 'Usted no puede subir una imagen a esa orden porque no le pertenece.';
+        }
         return redirect('/home')->with(compact('notification'));
     }
 }

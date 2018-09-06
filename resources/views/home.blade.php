@@ -106,9 +106,6 @@
                                           @csrf
                                           {{method_field('DELETE')}}
                                           <input type="hidden" name="cart_detail_id" value="{{$detail->id}}">
-                                          <a href="{{url('/products/'.$detail->product->id)}}" target="_blank" type="button" rel="tooltip" title="Información detallada" class="btn btn-info btn-simple btn-xs">
-                                              <i class="fa fa-info"></i>
-                                          </a>
                                           <button type="submit" rel="tooltip" title="Eliminar producto" class="btn btn-danger btn-simple btn-xs">
                                           <i class="fa fa-times"></i>
                                           </button>
@@ -118,6 +115,7 @@
                               @endforeach
                             </tbody>
                           </table>
+                          <p><strong>Importe a pagar: </strong>{{auth()->user()->cart->total}} &euro;</p> 
                           <form method="post" action="{{url('/order')}}">
                             @csrf
                             
@@ -128,14 +126,80 @@
                   </div>
                   <div class="tab-pane text-center gallery" id="favorite">
                     <div class="row">
-                      <div class="col-md-3 ml-auto">
-                        <img src="../assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                        <img src="../assets/img/examples/studio-3.jpg" class="rounded">
-                      </div>
-                      <div class="col-md-3 mr-auto">
-                        <img src="../assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                        <img src="../assets/img/examples/olu-eletu.jpg" class="rounded">
-                        <img src="../assets/img/examples/studio-1.jpg" class="rounded">
+                      <div class="col-md-12">
+                        <table class="table">
+                          <thead>
+                              <tr id="miTablaPersonalizada">
+                                  <th class="text-center">Vista</th>
+                                  <th class="text-center">#Orden</th>
+                                  <th class="text-center">Nombre</th>
+                                  <th class="text-center">Precio</th>
+                                  <th class="text-center">Cantidad</th>
+                                  <th class="text-center">SubTotal</th>
+                                  <th class="text-center">Estado</th>
+                                  <th class="text-center">Total</th>
+                                  <th class="text-center">Opciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                                @php
+                                  $n_order=1
+                                @endphp
+                              @foreach (auth()->user()->carts as $cart)
+                                @php
+                                  $cont=0
+                                @endphp
+                                @if($cart->status!='Active')                    
+                                 @foreach ($cart->details as $detail)
+                                  <tr>
+                                      <td class="text-center">
+                                        <img style="border-radius:100%;height:60px;width:60px;" src="{{$detail->product->featured_image_url}}" alt="">
+                                      </td>
+                                      <td class="text-center">
+                                        {{$n_order}}
+                                      </td>
+                                      <td>
+                                        <a href="{{url('/products/'.$detail->product->id)}}" target="_blank">{{$detail->product->name}}</a>
+                                      </td>
+                                      <td class="text-center">&euro; {{$detail->product->price}}</td>
+                                      <td class="text-center">
+                                        {{$detail->quantity}}
+                                      </td>
+                                      <td>&euro;
+                                        {{$detail->quantity * $detail->product->price}}
+                                      </td>
+                                      <td>
+                                        {{$cart->status}}
+                                      </td>
+                                      <td class="td-actions text-center">
+                                        @php
+                                          $cont+=$detail->quantity * $detail->product->price
+                                        @endphp
+                                        {{$cont}}
+                                      </td>
+                                      <td class="td-actions text-center">
+                                          <a href="{{url('/order/trans/'.$cart->id)}}" rel="tooltip" title="Subir imagen con la transferencia" class="btn btn-primary btn-simple btn-xs">
+                                              <i class="material-icons">add_photo_alternate</i>
+                                          </a>
+                                          <form method="post" action="{{url('/destroy/order')}}">
+                                              @csrf
+                                              {{method_field('DELETE')}}
+                                              <input type="hidden" name="cart_detail_id" value="{{$detail->id}}">
+                                              <button type="submit" rel="tooltip" title="Eliminar producto" class="btn btn-danger btn-simple btn-xs">
+                                              <i class="fa fa-times"></i>
+                                              </button>
+                                          </form>
+                                      </td>
+                                  </tr>
+                                  @endforeach
+                                  @php
+                                    $n_order++
+                                  @endphp
+                                  @endif 
+                                
+                              @endforeach
+                            </tbody>
+                          </table> 
                       </div>
                     </div>
                   </div>               

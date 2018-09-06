@@ -30,7 +30,7 @@
             }
 
             #miTablaPersonalizada th{
-              width: 150px;
+              width: 130px;
               overflow: auto;
               
             }
@@ -125,6 +125,9 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/admin/categories') }}">
                                     <i class="material-icons">library_add</i>{{ __('Gestionar categorías') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('/admin/orders') }}">
+                                    <i class="material-icons">bookmark_border</i>{{ __('Gestionar ordenes') }}
                                     </a>
                                 @endif
                                 <a class="dropdown-item" href="{{ url('/change_password') }}">

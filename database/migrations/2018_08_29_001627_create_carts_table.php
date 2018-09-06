@@ -16,10 +16,10 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->date('order_date')->nullable();
+            $table->string('order_date')->nullable();
             $table->date('arrived_date')->nullable();
             $table->string('status');//Active,Pending,Approved,Cancelled,Finished
-
+            $table->string('order_trans')->default("noimage.jpeg");
             //user_id(FK)customer
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

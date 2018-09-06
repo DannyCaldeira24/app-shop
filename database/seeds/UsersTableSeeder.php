@@ -21,5 +21,14 @@ class UsersTableSeeder extends Seeder
         	'password'=>bcrypt('123123'),
             'admin'=>true
         ]);
+        User::create([
+            'name'=>'Clara Josefina',
+            'surname'=>'Lozano Lipez',
+            'direction'=>'Madrid-España',
+            'postal_code'=>'1095',
+            'email'=>'danny_elportu@hotmail.com',
+            'password'=>bcrypt('123123'),
+            'admin'=>false
+        ]);
     }
 }

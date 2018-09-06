@@ -17,7 +17,8 @@
               </div>
               <div class="name">
                 <h3 class="title">{{$product->name}}</h3>
-                <h6>{{$product->category_name}}</h6>
+                <h5>{{$product->category_name}}</h5>
+                <h6>{{$product->price}}$</h6>
                  @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}

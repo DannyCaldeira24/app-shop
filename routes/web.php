@@ -18,11 +18,15 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('/modify_user','UserController@edit');
 	Route::get('/change_password','UserController@showpassform');
 	Route::post('/change_password/process','UserController@update_password');
+
+	Route::get('/order/trans/{id}', 'UserController@img_trans');
+	Route::post('/up', 'UserController@update_trans');
 });
 
 Route::middleware(['cart'])->group(function () {
 	Route::post('/cart', 'CartDetailController@store');
 	Route::delete('/cart', 'CartDetailController@destroy');
+	Route::delete('/destroy/order', 'CartDetailController@destroyorder');
 	Route::post('/order', 'CartController@update');
 });	
 
@@ -45,4 +49,10 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 	Route::get('/categories/{id}/edit', 'CategoryController@edit'); 
 	Route::post('/categories/{id}/edit', 'CategoryController@update');
 	Route::post('/categories/{id}/delete', 'CategoryController@destroy');
+
+	Route::get('/orders', 'OrderController@show');
+	Route::get('/orders/{id}', 'OrderController@order');
+	Route::post('/order/accepted/{id}', 'OrderController@accept');
+	Route::post('/order/reject/{id}', 'OrderController@reject');
+	Route::post('/order/finish/{id}', 'OrderController@finish');
 });
