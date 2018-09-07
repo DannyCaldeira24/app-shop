@@ -163,8 +163,8 @@
     </a>
 </li> -->
                     </ul>
-                    <form style="margin-left:30px;color:black;" class="form-inline my-2 my-lg-0" method="get" action="{{url('/search')}}">
-                        <input style="color:#bcc7d8;" class="form-control mr-sm-2" type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
+                    <form style="margin-left:30px;" class="form-inline my-2 my-lg-0" method="get" action="{{url('/search')}}">
+                        <input style="color:#b3bdce;" class="form-control mr-sm-2" type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
                         <button class="btn btn-primary btn-just-icon" type="submit">
                             <i class="material-icons">
                                 search

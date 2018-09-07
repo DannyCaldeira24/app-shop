@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Hash;
 use App\Cart;
+use Mail;
 use App\CartDetail;
+use App\Mail\Contact;
 
 class UserController extends Controller
 {
@@ -85,5 +87,15 @@ class UserController extends Controller
             $notification = 'Usted no puede subir una imagen a esa orden porque no le pertenece.';
         }
         return redirect('/home')->with(compact('notification'));
+    }
+    public function contact(Request $request){
+        if(auth()->user()){
+            $message=$request->input('message');
+            Mail::to('dannyelportu2013@gmail.com')->send(new Contact(auth()->user(),$message));
+            $notification = 'Gracias por escribirnos, nos pondremos en contacto con usted en la brevedad posible.';
+            return redirect('/home')->with(compact('notification'));
+        }else{
+            return redirect('/login');
+        }
     }
 }

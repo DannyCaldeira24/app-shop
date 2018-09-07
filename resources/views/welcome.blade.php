@@ -118,24 +118,11 @@
                 <div class="col-md-8 ml-auto mr-auto">
                     <h2 class="text-center title">Contactenos</h2>
                     <h4 class="text-center description">Nuestra prioridad eres tu por lo tanto escribenos a cualquier hora del día, estamos capacitados para ayudarle. También atendemos sus sugerencias buscamos mejorar por y para nuestros clientes.</h4>
-                    <form class="contact-form">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Su nombre y apellido</label>
-                                    <input type="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Su Email</label>
-                                    <input type="email" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+                    <form method="post" class="contact-form" action="{{url('/contact')}}">
+                        @csrf
                         <div class="form-group">
                             <label for="exampleMessage" class="bmd-label-floating">Escriba su mensaje</label>
-                            <textarea type="email" class="form-control" rows="4" id="exampleMessage"></textarea>
+                            <textarea name="message" type="text" class="form-control" rows="8" id="exampleMessage"></textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-4 ml-auto mr-auto text-center">
