@@ -58,4 +58,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 	Route::post('/order/finish/{id}', 'OrderController@finish');
 	Route::post('/order/delete/{id}', 'OrderController@delete');
 	Route::post('/order/pending/{id}', 'OrderController@pending');
+
+	Route::get('/search','SearchUserController@show');
+	Route::get('/users/json','SearchUserController@data');
+	Route::get('/users/{id}','UserController@userInfo');
 });

@@ -4,6 +4,19 @@
 
 @section('title',"Ordenes")
 
+@section('users')
+    @if (auth()->user()->admin)
+    <form style="margin-left:30px;color:black;" class="form-inline my-2 my-lg-0" method="get" action="{{url('admin/search')}}">
+        <input style="color:#b3bdce;" class="form-control mr-sm-2" type="text" placeholder="Nombre del usuario" class="form-control" name="queryus" id="search3">
+        <button class="btn btn-primary btn-just-icon" type="submit">
+            <i class="material-icons">
+                search
+            </i>
+        </button>
+    </form>
+    @endif
+@endsection
+
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/city-profile.jpg')}}')">
 </div>

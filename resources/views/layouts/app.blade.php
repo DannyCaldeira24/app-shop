@@ -145,6 +145,7 @@
                                 </form>
                             </div>
                         </li>
+                        @yield('users')
                         @endguest
                         @yield('welcome')
 <!--                         <li class="nav-item">
@@ -163,7 +164,7 @@
     </a>
 </li> -->
                     </ul>
-                    <form style="margin-left:30px;" class="form-inline my-2 my-lg-0" method="get" action="{{url('/search')}}">
+                    <form style="margin-left:30px;color:black;" class="form-inline my-2 my-lg-0" method="get" action="{{url('/search')}}">
                         <input style="color:#b3bdce;" class="form-control mr-sm-2" type="text" placeholder="Nombre del producto" class="form-control" name="query" id="search">
                         <button class="btn btn-primary btn-just-icon" type="submit">
                             <i class="material-icons">
@@ -261,6 +262,11 @@
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     prefetch: '{{url("/products/json")}}'
                 });
+                var users = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: '{{url("admin/users/json")}}'
+                });
                 //inicializar typeahead sobre nuestro input de búsqueda
                 $('#search').typeahead({
                     hint: true,
@@ -285,6 +291,14 @@
                 }, {
                     name: 'products',
                     source: products
+                });
+                $('#search3').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'users',
+                    source: users
                 });
             });
         </script>
