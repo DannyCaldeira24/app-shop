@@ -14,7 +14,7 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img src="{{asset('img/welcome.jpg')}}" alt="Circle Image" class="img-raised img-fluid">
+                <img style="height:150px !important ; width:200px; " src="{{asset('img/welcome.jpg')}}" alt="Circle Image" class="img-raised img-fluid">
               </div>
             </div>
           </div>
