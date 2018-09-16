@@ -25,10 +25,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile">
+            <div style="margin-bottom: -70px;" class="profile">
               <div class="avatar">
                 <a title="Cambiar imagen de perfil" href="{{url('/user/edit')}}">
-                  <img src="{{asset('images/users/'. Auth::user()->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                  <img src="{{asset('images/users/'. $user->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                 </a>
               </div>
               <br>

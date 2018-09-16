@@ -25,7 +25,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile">
+            <div style="margin-bottom: -70px;" class="profile">
               <div class="avatar">
                 <a title="Cambiar imagen de perfil" href="{{url('/user/edit')}}">
                   <img src="{{asset('images/users/'. Auth::user()->avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
@@ -46,16 +46,16 @@
                                         {{ session('notification') }}
                                     </div>
                                 @endif
+                              <div class="description text-center">
+                                <p>@if (auth()->user()->admin) Como administrador puede gestionar el inventario y los pedidos de los usuarios @else Como cliente puedes hacer solicitudes sobre nuestros productos añadiendolos a tu carrito de compras y realizar pedidos @endif</p>
+                              </div> 
                             </div>
                         </div>
-                    </div>          
+                    </div>         
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="description text-center">
-          <p>@if (auth()->user()->admin) Como administrador puede gestionar el inventario @else Como cliente puedes hacer solicitudes sobre nuestros productos añadiendolos a tu carrito de compras y realizar pedidos @endif</p>
         </div>
         <div class="tab-content tab-space text-center">
             <div class="team">
