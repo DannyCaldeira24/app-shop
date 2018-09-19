@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             'postal_code'=>'1095',
             'email'=>'danny_elportu@hotmail.com',
             'password'=>bcrypt('123123'),
-            'admin'=>false
+            'admin'=>true
         ]);
     }
 }
